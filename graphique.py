@@ -87,8 +87,19 @@ if uploaded_file:
         show_corr = st.checkbox("Afficher la correlation entre la magnitude et la significance")
 
         if show_corr:
-            data_france[['significance', 'magnitude', 'depth']].corr()
+            if all(col in data.columns for col in ['significance', 'magnitude', 'depth']):
+            # Calcul de la matrice de corrélation
+            correlation_matrix = data[['significance', 'magnitude', 'depth']].corr()
 
+            # Affichage de la matrice de corrélation
+            st.subheader("Matrice de Corrélation")
+            st.write(correlation_matrix)
+
+            # Visualisation avec Seaborn
+            st.subheader("Carte thermique des Corrélations")
+            fig, ax = plt.subplots()
+            sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', ax=ax)
+            st.pyplot(fig)
         else:
             st.error("Le fichier doit contenir les colonnes 'date', 'latitude' et 'longitude'.")
     except Exception as e:
