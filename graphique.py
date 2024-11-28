@@ -84,6 +84,11 @@ if uploaded_file:
                 )
                 st.plotly_chart(fig_map)
 
+        show_corr = st.checkbox("Afficher la correlation entre la magnitude et la significance")
+
+        if schow_corr
+            data_france[['significance', 'magnitude', 'depth']].corr()
+
         else:
             st.error("Le fichier doit contenir les colonnes 'date', 'latitude' et 'longitude'.")
     except Exception as e:
