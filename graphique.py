@@ -53,7 +53,7 @@ if uploaded_file:
                 st.plotly_chart(fig)
 
 
-        #  Etape 2.1 : Vérification des colonnes nécessaires
+        #  Etape 2. : Vérification des colonnes nécessaires
         if 'latitude' in data.columns and 'longitude' in data.columns and 'significance' in data.columns:
             # Étape 2.1 : Filtrer les séismes par niveau de significance
             st.subheader("Analyse des Séismes par Niveau de Significance")
