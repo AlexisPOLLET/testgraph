@@ -18,13 +18,16 @@ if uploaded_file:
         st.subheader("Aperçu des données :")
         st.write(data.head())
         
-        # Statistiques descriptives
-        st.subheader("Statistiques descriptives des données :")
-        st.write(data.describe())
-        
-        # Étape 3 : Filtrer les données pour la France
-        st.subheader("Statistiques des séismes en France")
-        
+        show_stat = st.checkbox("Afficher les statistiques descriptives des séismes en France")
+            
+        if show_stat:
+            # Statistiques descriptives
+            st.subheader("Statistiques descriptives des données :")
+            st.write(data.describe())
+            
+            # Étape 3 : Filtrer les données pour la France
+            st.subheader("Statistiques des séismes en France")
+            
         # Vérifiez que les colonnes nécessaires existent
         if 'date' in data.columns and 'latitude' in data.columns and 'longitude' in data.columns:
             # Conversion des dates
