@@ -66,9 +66,9 @@ if uploaded_file:
             st.write(f"Nombre de séismes de moyenne significance : {len(medium_significance)}")
             st.write(f"Nombre de séismes de forte significance : {len(high_significance)}")
 
-             show_carte = st.checkbox("Afficher la carte descriptives des séismes en France avec leur significance :")
+            show_map = st.checkbox("Afficher la carte descriptives des séismes en France avec leur significance: ")
             
-            if show_carte:
+            if show_map:
                 # Étape 2.2 : Créer une carte interactive avec Plotly
                 st.subheader("Carte Interactive des Séismes")
                 fig_map = px.scatter_mapbox(
