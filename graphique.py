@@ -95,11 +95,6 @@ if uploaded_file:
                 st.subheader("Matrice de Corrélation")
                 st.write(correlation_matrix)
     
-                # Visualisation avec Seaborn
-                st.subheader("Carte thermique des Corrélations")
-                fig, ax = plt.subplots()
-                sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', ax=ax)
-                st.pyplot(fig)
         else:
             st.error("Le fichier doit contenir les colonnes 'date', 'latitude' et 'longitude'.")
     except Exception as e:
