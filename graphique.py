@@ -76,7 +76,7 @@ if uploaded_file:
                 size="significance",  # Taille des points selon la significance
                 hover_name="significance",
                 title="Carte des Séismes en France",
-                zoom=2,
+                zoom=5,
                 mapbox_style="carto-positron"
             )
             st.plotly_chart(fig_map)
