@@ -86,7 +86,7 @@ if uploaded_file:
 
         show_corr = st.checkbox("Afficher la correlation entre la magnitude et la significance")
 
-        if schow_corr:
+        if show_corr:
             data_france[['significance', 'magnitude', 'depth']].corr()
 
         else:
