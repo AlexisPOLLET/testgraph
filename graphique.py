@@ -69,20 +69,20 @@ if uploaded_file:
              show_carte = st.checkbox("Afficher la carte descriptives des séismes en France avec leur significance :")
             
             if show_carte:
-            # Étape 2.2 : Créer une carte interactive avec Plotly
-            st.subheader("Carte Interactive des Séismes")
-            fig_map = px.scatter_mapbox(
-                data,
-                lat="latitude",
-                lon="longitude",
-                color="significance",  # Couleur selon la significance
-                size="significance",  # Taille des points selon la significance
-                hover_name="significance",
-                title="Carte des Séismes en France",
-                zoom=5,
-                mapbox_style="carto-positron"
-            )
-            st.plotly_chart(fig_map)
+                # Étape 2.2 : Créer une carte interactive avec Plotly
+                st.subheader("Carte Interactive des Séismes")
+                fig_map = px.scatter_mapbox(
+                    data,
+                    lat="latitude",
+                    lon="longitude",
+                    color="significance",  # Couleur selon la significance
+                    size="significance",  # Taille des points selon la significance
+                    hover_name="significance",
+                    title="Carte des Séismes en France",
+                    zoom=5,
+                    mapbox_style="carto-positron"
+                )
+                st.plotly_chart(fig_map)
 
         else:
             st.error("Le fichier doit contenir les colonnes 'date', 'latitude' et 'longitude'.")
