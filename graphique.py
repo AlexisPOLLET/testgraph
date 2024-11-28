@@ -33,10 +33,6 @@ if uploaded_file:
 
             # Compter le nombre de séismes par année
             seismes_par_annee = data.groupby('year').size().reset_index(name='nombre_seismes')
-            
-            bot = st.checkbox("Afficher le graphique de la colonne alcohol: ")
-            if bot:
-              st.line_chart(plot)
                 
             # Étape 4 : Diagramme en barres avec Plotly
             st.subheader("Frise chronologique des séismes")
@@ -49,6 +45,11 @@ if uploaded_file:
                 template='plotly_dark'
             )
             st.plotly_chart(fig)
+            
+            bot = st.checkbox("Afficher le graphique de la colonne alcohol: ")
+            if bot:
+              st.line_chart(fig)
+                
         else:
             st.error("Le fichier doit contenir les colonnes 'date', 'latitude' et 'longitude'.")
     except Exception as e:
