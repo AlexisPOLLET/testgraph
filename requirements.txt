@@ -1,1 +1,4 @@
 panda
+streamlit
+folium
+plotly
