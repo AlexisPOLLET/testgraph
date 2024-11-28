@@ -35,20 +35,20 @@ if uploaded_file:
             seismes_par_annee = data.groupby('year').size().reset_index(name='nombre_seismes')
 
             if show_graph:
-            # Étape 4 : Diagramme en barres avec Plotly
-            st.subheader("Frise chronologique des séismes")
-            fig = px.bar(
-                seismes_par_annee,
-                x='year',
-                y='nombre_seismes',
-                title='Nombre de Séismes par Année en France',
-                labels={'year': 'Année', 'nombre_seismes': 'Nombre de Séismes'},
-                template='plotly_dark'
-            )
-            
-            show_graph = st.checkbox("Afficher le graphique des séismes par année")
-            st.plotly_chart(fig)
-    
+                # Étape 4 : Diagramme en barres avec Plotly
+                st.subheader("Frise chronologique des séismes")
+                fig = px.bar(
+                    seismes_par_annee,
+                    x='year',
+                    y='nombre_seismes',
+                    title='Nombre de Séismes par Année en France',
+                    labels={'year': 'Année', 'nombre_seismes': 'Nombre de Séismes'},
+                    template='plotly_dark'
+                )
+                
+                show_graph = st.checkbox("Afficher le graphique des séismes par année")
+                st.plotly_chart(fig)
+        
         else:
             st.error("Le fichier doit contenir les colonnes 'date', 'latitude' et 'longitude'.")
     except Exception as e:
