@@ -34,6 +34,8 @@ if uploaded_file:
             # Compter le nombre de séismes par année
             seismes_par_annee = data.groupby('year').size().reset_index(name='nombre_seismes')
 
+            show_graph = st.checkbox("Afficher le graphique des séismes par année")
+            
             if show_graph:
                 # Étape 4 : Diagramme en barres avec Plotly
                 st.subheader("Frise chronologique des séismes")
@@ -45,8 +47,6 @@ if uploaded_file:
                     labels={'year': 'Année', 'nombre_seismes': 'Nombre de Séismes'},
                     template='plotly_dark'
                 )
-                
-                show_graph = st.checkbox("Afficher le graphique des séismes par année")
                 st.plotly_chart(fig)
         
         else:
