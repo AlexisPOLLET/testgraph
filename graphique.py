@@ -1,6 +1,7 @@
 
 
-
+data_france['date'] = pd.to_datetime(data_france['date'], infer_datetime_format=True, errors='coerce')
+data_france['year'] = data_france['date'].dt.year
 # Étape 4 : Frise chronologique des séismes
             st.subheader("Frise chronologique des séismes")
             data_france['date'] = pd.to_datetime(data_france['date'], infer_datetime_format=True, errors='coerce')
