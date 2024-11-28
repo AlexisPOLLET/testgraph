@@ -1,11 +1,6 @@
-
 import pandas as pd
 import streamlit as st
-import folium
 import plotly.express as px
-
-from streamlit_folium import folium_static
-
 
 # Titre de l'application
 st.title("Analyse des Séismes en France")
@@ -29,24 +24,29 @@ if uploaded_file:
         
         # Étape 3 : Filtrer les données pour la France
         st.subheader("Statistiques des séismes en France")
-        data_france = data  # Utilisez un filtre si nécessaire pour votre dataset
+        
+        # Vérifiez que les colonnes nécessaires existent
+        if 'date' in data.columns and 'latitude' in data.columns and 'longitude' in data.columns:
+            # Conversion des dates
+            data['date'] = pd.to_datetime(data['date'], infer_datetime_format=True, errors='coerce')
+            data['year'] = data['date'].dt.year
 
-data_france['date'] = pd.to_datetime(data_france['date'], infer_datetime_format=True, errors='coerce')
-data_france['year'] = data_france['date'].dt.year
+            # Compter le nombre de séismes par année
+            seismes_par_annee = data.groupby('year').size().reset_index(name='nombre_seismes')
 
-# Étape 4 : Frise chronologique des séismes
+            # Étape 4 : Diagramme en barres avec Plotly
             st.subheader("Frise chronologique des séismes")
-            data_france['date'] = pd.to_datetime(data_france['date'], infer_datetime_format=True, errors='coerce')
-            data_france['year'] = data_france['date'].dt.year
-            seismes_par_annee = data_france.groupby('year').size().reset_index(name='nombre_seismes')
-
-            # Créer et afficher la frise chronologique avec Plotly
             fig = px.bar(
-                seismes_par_annee, 
-                x='year', 
-                y='nombre_seismes', 
+                seismes_par_annee,
+                x='year',
+                y='nombre_seismes',
                 title='Nombre de Séismes par Année en France',
                 labels={'year': 'Année', 'nombre_seismes': 'Nombre de Séismes'},
                 template='plotly_dark'
             )
             st.plotly_chart(fig)
+        else:
+            st.error("Le fichier doit contenir les colonnes 'date', 'latitude' et 'longitude'.")
+    except Exception as e:
+        st.error(f"Erreur lors de la lecture du fichier : {e}")
+
